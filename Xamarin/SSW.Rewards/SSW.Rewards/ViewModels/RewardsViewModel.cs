@@ -16,11 +16,12 @@ namespace SSW.Rewards.ViewModels
         private readonly IRewardService _rewardService;
 
         public ICommand RewardCardTappedCommand { get; set; }
-        public ICommand MoreTapped { get; set; }
 
         public ObservableCollection<Reward> Rewards { get; set; }
 
         public bool NoRewards { get; set; } = true;
+
+        public bool IsLoading { get; set; } = true;
 
         public RewardsViewModel(IRewardService rewardService)
         {
@@ -33,6 +34,7 @@ namespace SSW.Rewards.ViewModels
         private async Task Initialise()
         {
             var rewardList = await _rewardService.GetRewards();
+
             rewardList.ForEach(reward =>
             {
                 Rewards.Add(reward);
@@ -44,12 +46,10 @@ namespace SSW.Rewards.ViewModels
                 RaisePropertyChanged("NoRewards");
             }
 
-            RewardCardTappedCommand = new Command<Reward>(async (reward) =>
-            {
-                await OpenRewardDetails(reward);
-            });
+            IsLoading = false;
+            RaisePropertyChanged("IsLoading");
 
-            MoreTapped = new Command<Reward>(async (reward) =>
+            RewardCardTappedCommand = new Command<Reward>(async (reward) =>
             {
                 await OpenRewardDetails(reward);
             });

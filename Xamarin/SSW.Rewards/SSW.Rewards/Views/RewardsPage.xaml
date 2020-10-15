@@ -42,7 +42,7 @@
                                 <Frame.Background>
                                     <LinearGradientBrush EndPoint="1,0"
                                                          StartPoint="0,1">
-                                        <GradientStop Color="Red"
+                                        <GradientStop Color="Gray"
                                                       Offset="0.1"/>
                                         <GradientStop Color="Transparent"
                                                       Offset="1.0"/>
@@ -85,19 +85,15 @@
                                            d:Text="SSW smart keepcup"
                                            InputTransparent="True"/>
 
-                                    <Button BackgroundColor="Black"
-                                            TextColor="Red"
-                                            HorizontalOptions="EndAndExpand"
-                                            VerticalOptions="EndAndExpand"
-                                            HeightRequest="40"
-                                            WidthRequest="70"
-                                            Margin="0"
-                                            Text="More"
-                                            Command="{Binding MoreTapped}"
-                                            BindingContext="{Binding Source={x:Reference RewardPage}, Path=BindingContext}"
-                                            CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"
-                                            Grid.Row="1"
-                                            Grid.Column="1"/>
+                                    <Label TextColor="White"
+                                           HorizontalOptions="EndAndExpand"
+                                           VerticalOptions="EndAndExpand"
+                                           HeightRequest="40"
+                                           WidthRequest="70"
+                                           Margin="0"
+                                           Text="More..."
+                                           Grid.Row="1"
+                                           Grid.Column="1"/>
 
                                 </Grid>
                             </Frame>
@@ -105,6 +101,11 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            <ActivityIndicator Color="{StaticResource SSWRed}"
+                               IsRunning="{Binding IsLoading}"
+                               IsVisible="{Binding IsLoading}"
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"/>
         </AbsoluteLayout>
     </Grid>
 </ContentPage>

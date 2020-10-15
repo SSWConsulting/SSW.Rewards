@@ -128,7 +128,7 @@ namespace SSW.Rewards.Services
 
             try
             {
-                ClaimRewardResult response = await _rewardClient.AddAsync(rewardString);
+                ClaimRewardResult response = await _rewardClient.ClaimAsync(rewardString);
 
                 if(response != null)
                 {

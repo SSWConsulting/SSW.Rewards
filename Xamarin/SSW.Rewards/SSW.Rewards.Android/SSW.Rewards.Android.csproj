@@ -4121,5 +4121,14 @@
     <AndroidResource Include="Resources\drawable-mdpi\SSWWhite_preview.png" />
     <AndroidResource Include="Resources\drawable-ldpi\SSWWhite_preview.png" />
   </ItemGroup>
+  <ItemGroup>
+      <AndroidResource Include="Resources\drawable-xxxhdpi\icon_trophy.png"/>
+      <AndroidResource Include="Resources\drawable-xxhdpi\icon_trophy.png"/>
+      <AndroidResource Include="Resources\drawable-xhdpi\icon_trophy.png"/>
+      <AndroidResource Include="Resources\drawable-hdpi\icon_trophy.png"/>
+      <AndroidResource Include="Resources\drawable-mdpi\icon_trophy.png"/>
+      <AndroidResource Include="Resources\drawable-ldpi\icon_trophy.png"/>
+  </ItemGroup>
+
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

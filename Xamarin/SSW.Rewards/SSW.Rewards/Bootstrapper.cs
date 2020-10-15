@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using System.Linq;
 using Xamarin.Forms;
-using SSW.Rewards.Views;
 using SSW.Rewards.ViewModels;
 using SSW.Rewards.Services;
 using System.Reflection;
@@ -37,6 +36,7 @@ namespace SSW.Rewards
             ContainerBuilder.RegisterType<UserService>().As<IUserService>();
             ContainerBuilder.RegisterType<DevService>().As<IDevService>();
             ContainerBuilder.RegisterType<ChallengeService>().As<IChallengeService>();
+            ContainerBuilder.RegisterType<RewardService>().As<IRewardService>();
         }
 
         protected void FinishedInitialization()

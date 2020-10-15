@@ -115,6 +115,11 @@
                  Icon="icon_qrcode">
             <ShellContent ContentTemplate="{DataTemplate local:EarnPointsPage}" />
         </Tab>
+        <Tab Title="Rewards"
+             Route="rewards"
+             Icon="icon_trophy">
+            <ShellContent ContentTemplate="{DataTemplate local:RewardsPage}"/>
+        </Tab>
         <Tab Title="SSW Devs"
                  Icon="icon_sswdevs">
             <ShellContent ContentTemplate="{DataTemplate local:DevProfiles}" />
