@@ -1,6 +1,7 @@
 ﻿using SSW.Rewards.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -19,38 +20,62 @@ namespace SSW.Rewards.Services
         public RewardService(IUserService userService)
         {
             _httpClient = new HttpClient();
-            _ = Initialise();
             _userService = userService;
+            _ = Initialise();
         }
 
         private async Task Initialise()
         {
             string token = await _userService.GetTokenAsync();
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            try
+            {
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            
 
             string baseUrl = App.Constants.ApiBaseUrl;
 
             _rewardClient = new RewardClient(baseUrl, _httpClient);
+            Debug.WriteLine("Reward client instantiated");
         }
 
         public async Task<List<Reward>> GetRewards()
         {
-            List<Reward> rewardList = new List<Reward>();
-
-            var rewards = await _rewardClient.ListAsync();
-            
-            foreach(var reward in rewards.Rewards)
+            try
             {
-                rewardList.Add(new Reward
-                {
-                    Cost = reward.Cost,
-                    Id = reward.Id,
-                    ImageUri = reward.ImageUri,
-                    Name = reward.Name
-                });
-            }
+                Debug.WriteLine("Rewards service getrewards called");
+                List<Reward> rewardList = new List<Reward>();
+                Debug.WriteLine("Instantiated blank rewards list");
 
-            return rewardList;
+                Debug.WriteLine("Calling getrewards from reward client");
+                var rewards = await _rewardClient.ListAsync();
+                Debug.WriteLine("Got rewards from reward client");
+
+                Debug.WriteLine("Adding rewards from client to blank list");
+
+                foreach (var reward in rewards.Rewards)
+                {
+                    rewardList.Add(new Reward
+                    {
+                        Cost = reward.Cost,
+                        Id = reward.Id,
+                        ImageUri = reward.ImageUri,
+                        Name = reward.Name
+                    });
+                }
+
+                Debug.WriteLine("Returning rewards list");
+                return rewardList;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public async Task<ClaimRewardResult> RedeemReward(Reward reward)

@@ -35,7 +35,6 @@ namespace SSW.Rewards.ViewModels
         private string _devEmail { get; set; }
         private string _devPhone { get; set; }
 
-        //public LayoutBo MyProperty { get; set; }
 
         public Rectangle OverlayLayoutBounds { get; set; }
 

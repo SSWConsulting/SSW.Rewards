@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using SSW.Rewards.Models;
@@ -16,6 +17,7 @@ namespace SSW.Rewards.ViewModels
         private readonly IRewardService _rewardService;
 
         public ICommand RewardCardTappedCommand { get; set; }
+        public ICommand TapTitleCommand { get; set; } = null;
 
         public ObservableCollection<Reward> Rewards { get; set; }
 
@@ -25,6 +27,7 @@ namespace SSW.Rewards.ViewModels
 
         public RewardsViewModel(IRewardService rewardService)
         {
+            Debug.WriteLine("Rewards viewmodel consturctor called");
             Title = "Rewards";
             _rewardService = rewardService;
             Rewards = new ObservableCollection<Reward>();
@@ -33,6 +36,7 @@ namespace SSW.Rewards.ViewModels
 
         private async Task Initialise()
         {
+            Debug.WriteLine("Rewards viewmodel init called");
             var rewardList = await _rewardService.GetRewards();
 
             rewardList.ForEach(reward =>
@@ -57,7 +61,7 @@ namespace SSW.Rewards.ViewModels
 
         public async Task OpenRewardDetails(Reward reward)
         {
-            await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(new RewardDetailsPage(reward));
+            await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(new RewardDetailsPage(reward, _rewardService));
         }
     }
 }

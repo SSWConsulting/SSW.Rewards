@@ -1,13 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-             x:Class="SSW.Rewards.PopupPages.RewardDetailsPage">
-    <ContentPage.Content>
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                 xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 mc:Ignorable="d"
+                 xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                 x:Class="SSW.Rewards.PopupPages.RewardDetailsPage">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation PositionIn="Center"
+                                   PositionOut="Center"
+                                   ScaleIn="1.2"
+                                   ScaleOut="0.8"
+                                   DurationIn="200"
+                                   DurationOut="200"
+                                   EasingIn="SinOut"
+                                   EasingOut="SinIn"
+                                   HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <Frame CornerRadius="3"
+           HorizontalOptions="Center"
+           Margin="10"
+           VerticalOptions="Center"
+           HasShadow="True"
+           BackgroundColor="{StaticResource ProfileBackgroundColour}">
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="{Binding Name}"
+                   d:Text="SSW Smart KeepCup"
+                   TextColor="AntiqueWhite"
+                   VerticalOptions="CenterAndExpand" 
+                   HorizontalOptions="CenterAndExpand" />
+            <ffimage:CachedImage Source="{Binding ImageUri}"
+                                 LoadingPlaceholder="dev_loading_placeholder"
+                                 ErrorPlaceholder="dev_loading_placeholder"
+                                 WidthRequest="300"
+                                 HeightRequest="300"
+                                 Aspect="AspectFit"
+                                 InputTransparent="True"/>
+            <Label Text="{Binding Cost, StringFormat='{0} SSW Points ⭐'}"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="CenterAndExpand"
+                   TextColor="{StaticResource PointsColour}"/>
+            <Button Text="Redeem"
+                    Command="{Binding RedeemTapped}"
+                    IsEnabled="{Binding RedeemEnabled}"/>
         </StackLayout>
-    </ContentPage.Content>
+    </Frame>
 </pages:PopupPage>

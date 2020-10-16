@@ -57,7 +57,7 @@
                                 <Grid ColumnDefinitions="5*, 5*"
                                       HorizontalOptions="FillAndExpand"
                                       VerticalOptions="FillAndExpand"
-                                      Padding="0"
+                                      Padding="0,0,5,5"
                                       RowDefinitions="5*, 5*"
                                       InputTransparent="True">
                                     <!-- The below ffimage is the actual image used in the app -->
@@ -81,13 +81,15 @@
                                            Text="{Binding Name}"
                                            TextColor="White"
                                            FontAttributes="Bold"
-                                           FontSize="22"
+                                           FontSize="18"
                                            d:Text="SSW smart keepcup"
                                            InputTransparent="True"/>
 
                                     <Label TextColor="White"
                                            HorizontalOptions="EndAndExpand"
                                            VerticalOptions="EndAndExpand"
+                                           HorizontalTextAlignment="End"
+                                           VerticalTextAlignment="End"
                                            HeightRequest="40"
                                            WidthRequest="70"
                                            Margin="0"

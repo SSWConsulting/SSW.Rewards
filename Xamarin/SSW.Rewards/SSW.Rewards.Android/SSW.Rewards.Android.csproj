@@ -30,8 +30,12 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidUseSharedRuntime>true</AndroidUseSharedRuntime>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <BundleAssemblies>false</BundleAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,6 +47,10 @@
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <AndroidPackageFormat>aab</AndroidPackageFormat>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <BundleAssemblies>false</BundleAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -4122,13 +4130,12 @@
     <AndroidResource Include="Resources\drawable-ldpi\SSWWhite_preview.png" />
   </ItemGroup>
   <ItemGroup>
-      <AndroidResource Include="Resources\drawable-xxxhdpi\icon_trophy.png"/>
-      <AndroidResource Include="Resources\drawable-xxhdpi\icon_trophy.png"/>
-      <AndroidResource Include="Resources\drawable-xhdpi\icon_trophy.png"/>
-      <AndroidResource Include="Resources\drawable-hdpi\icon_trophy.png"/>
-      <AndroidResource Include="Resources\drawable-mdpi\icon_trophy.png"/>
-      <AndroidResource Include="Resources\drawable-ldpi\icon_trophy.png"/>
+    <AndroidResource Include="Resources\drawable-xxxhdpi\icon_trophy.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\icon_trophy.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\icon_trophy.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\icon_trophy.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\icon_trophy.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\icon_trophy.png" />
   </ItemGroup>
-
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

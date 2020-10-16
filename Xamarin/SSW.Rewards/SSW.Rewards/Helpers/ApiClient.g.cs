@@ -12,6 +12,7 @@
 
 namespace SSW.Rewards
 {
+    using System.Diagnostics;
     using System = global::System;
     
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.8.2.0 (NJsonSchema v10.2.1.0 (Newtonsoft.Json v12.0.0.0))")]
@@ -1097,6 +1098,7 @@ namespace SSW.Rewards
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<RewardListViewModel> ListAsync()
         {
+            Debug.WriteLine("1");
             return ListAsync(System.Threading.CancellationToken.None);
         }
     
@@ -1104,50 +1106,74 @@ namespace SSW.Rewards
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public async System.Threading.Tasks.Task<RewardListViewModel> ListAsync(System.Threading.CancellationToken cancellationToken)
         {
+            Debug.WriteLine("2");
             var urlBuilder_ = new System.Text.StringBuilder();
+            Debug.WriteLine("3");
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Reward/List");
-    
+            Debug.WriteLine("4");
             var client_ = _httpClient;
+            Debug.WriteLine("5");
             var disposeClient_ = false;
+            Debug.WriteLine("6");
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
+                    Debug.WriteLine("7");
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    Debug.WriteLine("8");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-    
+                    Debug.WriteLine("9");
+
                     PrepareRequest(client_, request_, urlBuilder_);
+                    Debug.WriteLine("10");
                     var url_ = urlBuilder_.ToString();
+                    Debug.WriteLine("11");
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+                    Debug.WriteLine("12");
                     PrepareRequest(client_, request_, url_);
-    
+                    Debug.WriteLine("13");
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    Debug.WriteLine("14");
                     var disposeResponse_ = true;
+                    Debug.WriteLine("15");
                     try
                     {
                         var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        Debug.WriteLine("16");
                         if (response_.Content != null && response_.Content.Headers != null)
                         {
+                            Debug.WriteLine("17");
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
+                            Debug.WriteLine("18");
                         }
     
                         ProcessResponse(client_, response_);
-    
+                        Debug.WriteLine("19");
+
                         var status_ = (int)response_.StatusCode;
+                        Debug.WriteLine("20");
                         if (status_ == 200)
                         {
+                            Debug.WriteLine("21");
                             var objectResponse_ = await ReadObjectResponseAsync<RewardListViewModel>(response_, headers_).ConfigureAwait(false);
+                            Debug.WriteLine("22");
                             if (objectResponse_.Object == null)
                             {
+                                Debug.WriteLine("23");
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                Debug.WriteLine("24");
                             }
                             return objectResponse_.Object;
+                            Debug.WriteLine("25");
                         }
                         else
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            Debug.WriteLine("26");
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                            Debug.WriteLine("27");
                         }
                     }
                     finally

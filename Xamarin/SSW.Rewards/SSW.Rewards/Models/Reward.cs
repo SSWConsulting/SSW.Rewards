@@ -10,5 +10,6 @@ namespace SSW.Rewards.Models
         public DateTimeOffset? AwardedAt { get; set; }
         public bool Awarded { get; set; }
         public string ImageUri { get; set; }
+        public RewardType RewardType { get; set; }
     }
 }
